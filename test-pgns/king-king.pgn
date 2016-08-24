@@ -1,0 +1,9 @@
+[Event "Chess++ Game"]
+[Site "Computer"]
+[Date "2016.7.30"]
+[Round "1"]
+[White "Jonathan"]
+[Black "Sumner"]
+[Result "*"]
+
+1.d4 e5 2.dxe5 f6 3.exf6 gxf6 4.e4 f5 5.exf5 d5 6.Bc4 dxc4 7.Qxd8+ Kxd8 8.f6 Nxf6 9.b3 cxb3 10.axb3 Ne4 11.f3 Ba3 12.Bxa3 Re8 13.c4 Nc3+ 14.Kd2 Nxb1+ 15.Rxb1 Bg4 16.fxg4 Nc6 17.Re1 Rxe1 18.Kxe1 b5 19.cxb5 a5 20.bxc6 a4 21.bxa4 Rxa4 22.Ne2 Rxa3 23.Kd2 Rc3 24.Kxc3 Ke7 25.Kd4 Kd6 26.Nf4 Kxc6 27.g5 Kd6 28.Ne6 Kxe6 29.Rf1 c5+ 30.Kxc5 h6 31.gxh6 Ke5 32.Rf5+ Kxf5 33.Kc6 Kg6 34.Kc5 Kxh6 35.Kd5 Kh5 36.Kd4 Kh4 37.Kd5 Kg4 38.h4 Kxh4 39.g3+
