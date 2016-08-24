@@ -64,3 +64,7 @@ and the ambiguities occur so rarely, that I decided it wasn't worth implementing
 Portable Game Notation (PGN) format is a standard chess-game format which contains game metadata
 such as the player names as well as every move made in the game. The PGN spec can be found at
 https://www.chessclub.com/user/help/pgn-spec.
+
+
+## Contributing
+To contribute, just make a pull request.
