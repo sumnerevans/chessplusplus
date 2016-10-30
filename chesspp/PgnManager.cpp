@@ -44,11 +44,11 @@ PgnManager::PgnManager(ifstream& pgnFileStream) {
 
     // Couldn't parse all of the data required to load the game.
     if (this->White.size() < 1 || this->Black.size() < 1 || this->Result.size() < 1) {
-        throw exception("Could not parse PGN file");
+        throw 8;
     }
 
     if (this->Result != "*") {
-        throw exception("Cannot resume completed game.");
+        throw 9;
     }
 }
 
@@ -58,7 +58,7 @@ void PgnManager::SavePgn(const Game& game, const string filePath) {
     // Check for errors
     if (pgnOutputFileStream.fail()) {
         cerr << "Error opening file: " << filePath << " for write" << endl;
-        throw 7;
+        throw 10;
     }
 
     // Output information about the match.
@@ -183,12 +183,11 @@ void PgnManager::addMoves(const string moveText) {
 string PgnManager::getTodayString() {
     time_t today = time(0);
     ostringstream dateString;
-    struct tm timeinfo;
+    struct tm *now = localtime(&today);
 
-    localtime_s(&timeinfo, &today);
-    dateString << 1900 + timeinfo.tm_year << ".";
-    dateString << 1 + timeinfo.tm_mon << ".";
-    dateString << timeinfo.tm_mday;
+    dateString << 1900 + now->tm_year << ".";
+    dateString << 1 + now->tm_mon << ".";
+    dateString << now->tm_mday;
 
     return dateString.str();
 }

@@ -3,6 +3,12 @@
 using namespace std;
 using namespace sf;
 
+/*Game::~Game() {
+    for (Piece *p : this->pieces) {
+        delete p;
+    }
+}*/
+
 Game::Game() { }
 
 Game::Game(const string pgnFileName, const int boardSideLength, const Vector2f boardOffset) {
@@ -11,7 +17,7 @@ Game::Game(const string pgnFileName, const int boardSideLength, const Vector2f b
 
     // Check for failure
     if (pgnFileStream.fail()) {
-        throw exception("Unable to read PGN File.");
+        throw 1;
     }
 
     // Initialise the game using the data extracted by the PgnManager
@@ -27,7 +33,7 @@ Game::Game(const string pgnFileName, const int boardSideLength, const Vector2f b
         if (encodedMove.at(encodedMove.size() - 2) == '=') {
             // This is a promotion. Chop off the promotion text.
             if (encodedMove.at(encodedMove.size() - 1) != 'Q') {
-                throw exception("Chess++ does not support promotion to anything but a Queen.");
+                throw 2;
             }
 
             encodedMove = encodedMove.substr(0, encodedMove.size() - 2);
@@ -89,7 +95,7 @@ Game::Game(const string pgnFileName, const int boardSideLength, const Vector2f b
                 }
 
                 if (encodedMove.size() != 1) {
-                    throw exception("Unsupported PGN movetext.");
+                    throw 3;
                 }
 
                 // If we got here, this is either a pawn capture, or a normal
@@ -135,14 +141,14 @@ Game::Game(const string pgnFileName, const int boardSideLength, const Vector2f b
 
         // If we weren't able to find the piece that should move, blow up.
         if (pieceToMove == NULL) {
-            throw exception("Invalid PGN movetext");
+            throw 4;
         }
 
         // Move the piece. If the move is invalid, then the movetext is invalid, blow up.
         if (this->movePieceIfValid(pieceToMove, newSquare)) {
             this->completeTurn();
         } else {
-            throw exception("Invalid PGN movetext");
+            throw 5;
         }
     }
 }
@@ -223,7 +229,7 @@ bool Game::canCastle(const Square* newSquare) const {
         passThroughSquare = this->getCastlingRookFinalSquare(false, true);
         castlingRook = this->getCastlingRook(false, true);
     } else {
-        throw exception("BUG: canCastle should not be called if the move does not have a possibility of being a castle.", 4);
+        throw 6;
     }
 
     // If there is no piece on the castling Rook's square or if the
@@ -554,7 +560,6 @@ void Game::movePiece(Piece* piece, Square* newSquare) {
 bool Game::movePieceIfValid(Piece* piece, Square* newSquare) {
     Move move;
     vector<Piece*> piecesInPlay = this->getPiecesInPlay();
-    bool playerWouldBeInCheck = false;
     bool isKingsideCastle = false;
     bool isQueensideCastle = false;
 
@@ -862,16 +867,16 @@ Move Game::populateMove(Piece* piece, Square* newSquare, const bool isKingsideCa
 
     // If the Pawn moves up two spaces on the first move, it is capturable En Passant
     if (piece->type == Pawn && !piece->hasMoved) {
-        if (this->currentPlayerColour == White && newSquare->coordinate.rank == 4 ||
-            this->currentPlayerColour == Black && newSquare->coordinate.rank == 5) {
+        if ((this->currentPlayerColour == White && newSquare->coordinate.rank == 4) ||
+            (this->currentPlayerColour == Black && newSquare->coordinate.rank == 5)) {
             piece->capturableEnPassant = true;
         }
     }
 
     // Promote the Pawn if necessary
     if (piece->type == Pawn) {
-        if (piece->colour == White && newSquare->coordinate.rank == 8 ||
-            piece->colour == Black && newSquare->coordinate.rank == 1) {
+        if ((piece->colour == White && newSquare->coordinate.rank == 8) ||
+            (piece->colour == Black && newSquare->coordinate.rank == 1)) {
             piece->Promote();
             move.isPromotion = true;
         }

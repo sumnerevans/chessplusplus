@@ -37,6 +37,7 @@ public:
     Texture blackRookTexture;
 
     // ===== Constructors =====
+    //~Board();
     Board();
 
     // Creates a board with the given side length

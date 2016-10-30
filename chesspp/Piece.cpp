@@ -79,7 +79,7 @@ char Piece::GetPieceCharRepresentation() const {
 
 void Piece::Promote() {
     if (this->type != Pawn) {
-        throw 8;
+        throw 11;
     }
 
     this->type = Queen;

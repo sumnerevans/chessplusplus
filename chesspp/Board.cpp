@@ -3,6 +3,12 @@
 using namespace std;
 using namespace sf;
 
+/*Board::~Board() {
+    for (Square *s : this->squares) {
+        delete s;
+    }
+}*/
+
 Board::Board() { }
 
 Board::Board(const int boardSideLength) {
@@ -79,6 +85,7 @@ vector<Sprite> Board::GetBoardSprites(const vector<Piece*>& piecesInPlay, const 
 
             if (this->boardOrientation == WhiteUp) {
                 // a8 is in the top left. The files are in order left to right, the
+;
                 // ranks are in order bottom to top.
 
                 position.x = this->squareSideLength * (square->coordinate.file - 1) + offset.x;
@@ -153,32 +160,32 @@ void Board::initialiseTextures() {
     // Load the piece images
     if (!bishopImage.loadFromFile(ROOT_PIECE_IMG_DIR + "bishop.png")) {
         cerr << "Couldn't load bishop.png!" << endl;
-        throw 4;
+        throw 7;
     }
 
     if (!kingImage.loadFromFile(ROOT_PIECE_IMG_DIR + "king.png")) {
         cerr << "Couldn't load king.png!" << endl;
-        throw 4;
+        throw 7;
     }
 
     if (!knightImage.loadFromFile(ROOT_PIECE_IMG_DIR + "knight.png")) {
         cerr << "Couldn't load knight.png!" << endl;
-        throw 4;
+        throw 7;
     }
 
     if (!pawnImage.loadFromFile(ROOT_PIECE_IMG_DIR + "pawn.png")) {
         cerr << "Couldn't load bishop.png!" << endl;
-        throw 4;
+        throw 7;
     }
 
     if (!queenImage.loadFromFile(ROOT_PIECE_IMG_DIR + "queen.png")) {
         cerr << "Couldn't load bishop.png!" << endl;
-        throw 4;
+        throw 7;
     }
 
     if (!rookImage.loadFromFile(ROOT_PIECE_IMG_DIR + "rook.png")) {
         cerr << "Couldn't load bishop.png!" << endl;
-        throw 4;
+        throw 7;
     }
 
     // Load textures for White

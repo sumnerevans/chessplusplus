@@ -53,6 +53,6 @@ Color Square::getColorForSquare() const {
     case Dark:
         return Color(118, 150, 86);
     default:
-        throw 10;
+        throw 12;
     }
 }

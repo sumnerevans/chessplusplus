@@ -26,6 +26,7 @@ public:
     string Termination = "Incomplete";
 
     // ===== Constructors =====
+    //~Game();
     Game();
 
     // Loads an existing game from a PGN file.
