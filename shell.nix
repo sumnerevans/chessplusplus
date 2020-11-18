@@ -11,6 +11,7 @@ pkgs.mkShell {
     ccls
 
     # C++
+    bear
     clang
     sfml
   ];

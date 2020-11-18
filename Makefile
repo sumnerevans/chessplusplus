@@ -31,8 +31,13 @@ CXX=clang++
 all: $(TARGETS)
 	$(CXX) -Wall -Werror -g -std=c++11 -o $(OUTFILE) $(TARGETS) -lsfml-system -lsfml-graphics -lsfml-window
 
+configure: compile_commands.json
+
+compile_commands.json:
+	bear -- make
+
 run: $(TARGETS)
 	./$(OUTFILE)
 
 clean:
-	rm $(OUTFILE)
+	rm -rf $(OUTFILE)
